@@ -25,6 +25,34 @@
   border: 0px solid;
   margin-left: 60px;
 }
+
+.btn-menu-details a{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 32px;
+  /*display:inline-block;*/
+  color: #FFF;
+  text-align:center;
+  text-decoration: none;
+}
+.btn-menu-details{
+  display: none;
+}
+.btn-menu:active .btn-menu-details {
+  display: flex;
+  position:  absolute;
+  left: 0;
+  top: 100px;
+  background: #000;
+  width: 1440px;
+  height: 200px;
+  z-index: 5;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: space-around;
+}
 .stick{
   width: 48px;
   height: 5px;
