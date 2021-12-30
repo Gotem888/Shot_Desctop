@@ -18,7 +18,7 @@
   position:absolute;
   top:50%;
   left:50%;
-  margin:0 0 0 -39px;
+  margin:0 auto;
   z-index: 10;
 }
 #btn-menu{
@@ -444,7 +444,8 @@ and (max-width: 812px) {
   }
   .logo{
     position: absolute;
-    left: 320px;
+    right: 20px;
+    left: unset;
     top: 20px;
   }
     .hero{
