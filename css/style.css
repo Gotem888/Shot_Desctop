@@ -12,6 +12,7 @@
   justify-content:space-between;
   align-items:center;
   position:relative;
+  z-index: 20;
 }
 .logo{
   position:absolute;
@@ -20,55 +21,104 @@
   margin:0 0 0 -39px;
   z-index: 10;
 }
-.btn-menu{
+#btn-menu{
   background: #000;
   border: 0px solid;
   margin-left: 60px;
 }
 
 .btn-menu-details a{
+  opacity: 0;
   font-family: Poppins;
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
   line-height: 32px;
-  /*display:inline-block;*/
   color: #FFF;
   text-align:center;
   text-decoration: none;
 }
+
 .btn-menu-details{
-  display: none;
-}
-.btn-menu:active .btn-menu-details {
   display: flex;
   position:  absolute;
   left: 0;
+  transition-timing-function: cubic-bezier(10,2,3,1);
+  transform: translateY(-100rem);
   top: 100px;
+  transition: 0.5s;
   background: #000;
   width: 1440px;
   height: 200px;
-  z-index: 5;
   text-transform: uppercase;
   align-items: center;
   justify-content: space-around;
 }
-.stick{
-  width: 48px;
-  height: 5px;
-  margin-bottom: 8px;
-  background: #FFF;
+.btn-menu-details .button{
+  display: none;
 }
+#btn-menu {
+    display: none;
+}
+
+#btn-menu:checked ~ .btn-menu-details {
+transform: translateX(0rem);
+}
+#btn-menu:checked ~ .btn-menu-details a{
+  opacity: 100%;
+  transition-duration: 3s;
+}
+
+#btn-menu:checked ~ .btn-menu-details a:hover{
+  color: red;
+  transition-duration: 1s;
+}
+
+#burger {
+  position: relative;
+  cursor: pointer;
+  width: 48px;
+  height: 31px;
+  left: 60px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#burger > div {
+  height: 5px;
+  background-color: #FFF;
+  transition: 0.5s;
+  z-index: 999;
+}
+
+#btn-menu:checked ~ #burger > div {
+  background-color: #fff;
+}
+
+#btn-menu:checked ~ #burger > div:nth-child(1) {
+  transform: translateY(12.5px) rotate(135deg);
+}
+#btn-menu:checked ~ #burger > div:nth-child(2) {
+  opacity: 0;
+}
+#btn-menu:checked ~ #burger > div:nth-child(3) {
+  transform: translateY(-12.5px) rotate(45deg);
+}
+
 .button{
   display:inline-block;
-  text-align:center;
   width:222px;
   height:58px;
   position:relative;
   border:2px solid #FFF;
   margin:0 60px 0 0;
 }
+.button:active {
+  border:2px solid #DA0000;
+}
 .btn{
+  cursor: pointer;
   transition-duration: 0.7s;
   width:222px;
   height:58px;
@@ -86,14 +136,17 @@
   transition-duration: 0.7s;
   color:rgba(255,255,255,90%);
   background:rgba(0,0,0,10%);
-  box-shadow: 0 8px 6px 0 #808080,0 11px 20px 0 #9b9b9b;
+  box-shadow: 0 0 5px #666666,
+              0 0 25px #666666,
+              0 0 50px #999999,
+              0 0 100px #999999;
   text-shadow: 2px 2px 3px rgba(0,0,0,0.65);
 }
 .btn:active{
   transition-duration: 0.3s;
-  color:rgba(255,255,255,90%);
+  color:#DA0000;
   background:rgba(0,0,0,10%);
-  box-shadow: 0 2px 3px 0 #666666,0 3px 5px 0 #999999;
+  box-shadow: 0 2px 3px 0 #DA0000,0 3px 5px 0 #DA0000;
 }
 .products{
   background: #000;
@@ -111,7 +164,7 @@
   position: relative;
 }
 .box-details{
-    transition-duration: 0.3s;
+  transition-duration: 0.3s;
   width: 100px;
   height: 80px;
   background: 
@@ -145,16 +198,15 @@
   border-radius: 10px;
   background: 
     url("../img/ellipse 4.png")bottom 50% left 20px/ auto 20px no-repeat,
-    linear-gradient(270deg, #FFFFFF 17.83%, rgba(255, 255, 255, 0) 175.48%);
-  /*border: 2px solid #000000;*/
+    linear-gradient(270deg, #ffffff 17.83%, rgba(255, 255, 255, 0) 175.48%);
 }
 .box:hover .box-details *{
   display: block;
 }
 .box-details h2{
-font-weight: bold;
-text-transform: uppercase;
-margin-bottom:20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom:20px;
 }
 .box-details p{
   width: 311px;
@@ -163,25 +215,26 @@ margin-bottom:20px;
   margin-bottom: 40px;
 }
 .box-details a{
-    transition-duration: 0.3s;
+  transition-duration: 0.3s;
   align-self: flex-start;
   margin-left: 60px;
   font-family: Poppins;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 18px;
-text-decoration: none;
-color: #FFF;
-padding:3px 8px;
-background: #000;
-border-radius: 28px;
-border: 1px solid #000;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #FFF;
+  padding:3px 8px;
+  background: #000;
+  border-radius: 28px;
+  border: 1px solid #000;
 }
 .box-details a:hover{
   transition-duration: 0.3s;
   color: #000;
-  font-weight: bold;
+  font-size: 22px;
+  padding:8px 20px;
   background: #FFF;
   border: 1px solid #000;
   box-shadow: 0 4px 3px 0 #808080,0 5px 8px 0 #000000;
@@ -216,12 +269,12 @@ border: 1px solid #000;
   margin-right: 60px;
 }
 .info h1{
-font-family: Poppins;
-font-style: normal;
-font-weight: bold;
-font-size: 40px;
-line-height: 32px;
-margin-bottom: 40px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 32px;
+  margin-bottom: 40px;
 }
 .info p{
   font-family: Poppins;
@@ -229,7 +282,7 @@ margin-bottom: 40px;
   font-weight: normal;
   font-size: 20px;
   line-height: 32px;
-  display:inline-block;
+  /*display:inline-block;*/
   width:500px;
   text-align:right;
   margin-bottom: 40px;
@@ -258,6 +311,10 @@ margin-bottom: 40px;
 }
 .info .btn:hover{
   background:rgba(255,255,255,10%);
+  box-shadow: 0 0 5px #666666,
+              0 0 25px #666666,
+              0 0 50px #666666,
+              0 0 100px #666666;
 }
 .products .info{
   display: block;
@@ -268,23 +325,15 @@ margin-bottom: 40px;
   width: 100%;
   left: 50%;
   text-align: center;
-  /*right:0;
-  width:1000px;
-  height:600px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  justify-content: center;
-  margin-right: 60px;*/
 }
 .products .info h1{
-font-family: Poppins;
-font-style: normal;
-font-weight: bold;
-font-size: 40px;
-line-height: 32px;
-margin-bottom: 40px;
-color: #FFF;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 32px;
+  margin-bottom: 40px;
+  color: #FFF;
 }
 .products .info p{
   max-width:1440px;
@@ -300,20 +349,18 @@ color: #FFF;
   margin-bottom: 40px;
 }
 .info-bott{
-  /*display: inline-block;*/
   text-align: center;
-/*  width: 1440px;*/
   margin: 0 auto;
   background: #000;
 }
 .info-bott h1{
   color: #FFF;
   font-family: Poppins;
-font-style: normal;
-font-weight: bold;
-font-size: 40px;
-line-height: 32px;
-margin-bottom: 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 32px;
+  margin-bottom: 40px;
 }
 .info-bott p{
   font-family: Poppins;
@@ -336,9 +383,10 @@ footer{
   justify-content: space-between;
 }
 footer a{
-font-family: Poppins;
+  transition-duration: 3s;
+  font-family: Poppins;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 20px;
   line-height: 32px;
   text-transform: uppercase;
@@ -347,33 +395,198 @@ font-family: Poppins;
   margin: 60px 0;
 }
 
+footer a:hover{
+  font-weight: bold;
+  color:  red;
+  transition-duration: 1s;
+}
+
 /*Адаптивность*/
 /*------------*/
 /* tablet */
 @media only screen
 and (min-width: 1024px)
 and (max-width: 1439px) {
-  .header{
-    background: red;
-  }
+
 }
-
-
-
-
-
-
-
 
 /* mobile */
 @media only screen
 and (min-width: 0)
-and (max-width: 1023px) {
-  .button .btn{
+and (max-width: 812px) {
+.box{
+    pointer-events: none;
+  }
+  .button{
     display: none;
-    border: 0px solid;
   }
   .logo{
     position: static;
+  }
+  #burger{
+    left: 20px;
+  }
+  .btn-menu-details .button{
+   display: inline-block;
+   margin: 0 auto;
+  }
+  .btn-menu-details {
+    width: 375px;
+    height: 712px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .btn-menu-details a{
+    margin-bottom: 40px;
+  }
+  .btn-menu-details .button{
+    margin-top: 40px;
+  }
+  .logo{
+    position: absolute;
+    left: 320px;
+    top: 20px;
+  }
+    .hero{
+    width: 335px;
+    height: 385px;
+    margin-bottom: 40px;
+  }
+    .info{
+    background: #FFF;
+    width:345px;
+    height: 345px;
+    display:flex;
+    flex-direction:column;
+    text-align: center;
+    margin: 40px auto;
+    align-items: center;
+  }
+  .info h1{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    width: 258px;
+  }
+  .info p{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    width:335px;
+    text-align:center;
+    margin-bottom: 40px;
+  }
+  .info .button{
+    display:inline-block;
+    text-align:center;
+    width:280px;
+    height:52px;
+    position:relative;
+    border:2px solid #000;
+    margin:0;
+  }
+  .info .btn{
+    width:280px;
+    height:52px;
+    position:absolute;
+    left:calc(50% - 280px/2);
+    top:calc(50% - 52px/2);
+    border:0px solid;
+    border-radius:8px;
+    font-size:20px;
+    text-transform:uppercase;
+    color:#000;
+    background:#FFF;
+  }
+  .image{
+    display: none;
+  }
+  .products .container{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .box{
+    width: 335px;
+    height: 640px;
+    background: #000;
+    border-radius: 10px;
+    position: relative;
+    margin: 20px auto;
+  }
+  .box img{
+    width: 335px;
+    height: 360px;
+  }
+  .box-details *{
+    display: unset;
+  }
+  .box-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    border-radius: 10px;
+    background: #000;
+    color: #FFF;
+    position:unset;
+  }
+  .box-details h2{
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .box-details a{
+    color: #000;
+    background: #FFF;
+    border: 1px solid #FFF;
+    margin: 0;
+  }
+
+  .info-bott{
+    text-align: center;
+    margin: 0 auto;
+    background: #000;
+    padding-top: 20px;
+  }
+  .bott-info{
+    display: inline-block;
+    width:335px ;
+    text-align: center;
+
+  }
+  .info-bott h1{
+    display: inline-block;
+    width: 258px;
+    color: #FFF;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+  .info-bott p{
+    font-family: Poppins;
+    color: #FFF;
+    width: 335px;
+    margin: 0 auto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+  .bott-info .button{
+    display: inline-block;
+    margin: 0 0 60px;
+  }
+   footer{
+    display: none;
   }
 }
